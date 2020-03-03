@@ -6,6 +6,7 @@ class LoginPage {
         this.userNameField = Selector("#user-name");
         this.passwordField = Selector("#password");
         this.loginButton = Selector("input[type=submit]");
+        this.loginErrorText = Selector("h3[data-test*=error]");
     }
 
     async loginUser(userName, password) {
