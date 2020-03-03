@@ -1,0 +1,22 @@
+{
+  "name": "frontedn-wizeline-academy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OscarOrozcoGomez/frontEdn-Wizeline-Academy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OscarOrozcoGomez/frontEdn-Wizeline-Academy/issues"
+  },
+  "homepage": "https://github.com/OscarOrozcoGomez/frontEdn-Wizeline-Academy#readme",
+  "dependencies": {
+    "testcafe": "^1.8.2"
+  }
+}
