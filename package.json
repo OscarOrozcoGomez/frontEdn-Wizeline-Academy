@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/OscarOrozcoGomez/frontEdn-Wizeline-Academy/issues"
   },
-  "homepage": "https://github.com/OscarOrozcoGomez/frontEdn-Wizeline-Academy#readme"
+  "homepage": "https://github.com/OscarOrozcoGomez/frontEdn-Wizeline-Academy#readme",
+  "dependencies": {
+    "testcafe": "^1.8.2"
+  }
 }
