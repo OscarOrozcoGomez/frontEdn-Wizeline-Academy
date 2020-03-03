@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test-chrome": "testcafe chrome src/saucedemo/tests/Login.tests.js --selector-timeout 15000 --assertion-timeout 15000",
+    "test-chrome": "testcafe chrome src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000",
     "test-firefox": "testcafe firefox src/saucedemo/tests/Login.tests.js --selector-timeout 15000 --assertion-timeout 15000",
     "test-safari": "testcafe safari src/saucedemo/tests/Login.tests.js --selector-timeout 15000 --assertion-timeout 15000"
   },
