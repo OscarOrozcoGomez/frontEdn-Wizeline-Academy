@@ -18,7 +18,6 @@ test("Navigate to the shopping cart", async t =>{
     await ShoppingCartPage.isPageLoaded();
 });
 
-
 test("Add one item to the cart", async t => {
     await ProductsPage.addItemToCart(1);
     await ProductsPage.navigateToShoppingCartPage();
