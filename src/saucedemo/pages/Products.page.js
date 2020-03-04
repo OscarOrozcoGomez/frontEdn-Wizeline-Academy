@@ -9,6 +9,7 @@ class ProductsPage {
         this.logOutLink = Selector("#logout_sidebar_link");
         this.shoppingCart = Selector("a>svg[data-icon=shopping-cart]");
         this.invetoryItem = Selector(".inventory_item");
+        this.inventoryLabelTextList = []; 
     }
 
     async isPageLoaded(){
@@ -32,8 +33,17 @@ class ProductsPage {
 
     async addItemToCart(numberOfItems){
         for (let index = 0; index < numberOfItems; index++) {
-            await t.click(this.invetoryItem.find("button").nth(index)).wait(1000)
+            await t.click(this.invetoryItem.find("button").nth(index));
+            this.setLabelTextForEachInventoryItem(index)
         }
+    }
+
+    async setLabelTextForEachInventoryItem(index){
+        this.inventoryLabelTextList[index] = await this.invetoryItem.find(".inventory_item_name").nth(index).textContent
+    }
+
+    async getLabelTextForEachInventoryItem(){
+        return this.inventoryLabelTextList;
     }
 }
 

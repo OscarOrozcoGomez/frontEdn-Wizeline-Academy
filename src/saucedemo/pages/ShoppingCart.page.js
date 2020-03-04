@@ -1,4 +1,5 @@
 import { Selector, t } from "testcafe";
+import ProductsPage from "../pages/Products.page"
 
 class ShoppingCart {
     constructor() {
@@ -14,6 +15,11 @@ class ShoppingCart {
             this.continueShoppingButton.exists
         );
     }
+
+    async verifyItemIsAddedToCart(){
+        
+    }
+
 }
 
 export default new ShoppingCart();

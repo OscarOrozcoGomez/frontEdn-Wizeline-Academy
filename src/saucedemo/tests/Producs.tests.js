@@ -1,5 +1,6 @@
 import LoginPage from "../pages/Login.page"
 import ProductsPage from "../pages/Products.page"
+import ShoppingCartPage from "../pages/ShoppingCart.page"
 
 const STANDAR_USER = process.env.SAUCEDEMO_STANDAR_USER;
 const LOCKED_OUT_USER = process.env.SAUCEDEMO_LOCKED_OUT_USER;
@@ -12,12 +13,15 @@ fixture("Products Tests").page("https://www.saucedemo.com/").beforeEach(async t 
     await LoginPage.loginUser(STANDAR_USER, PASSWORD);
 });
 
-test("Log out successful", async t =>{
-    await ProductsPage.logOut();
-    await t.expect(LoginPage.userNameField.exists).ok()
-    .expect(LoginPage.passwordField.exists).ok();
-});
+// test("Log out successful", async t =>{
+//     await ProductsPage.logOut();
+//     await t.expect(LoginPage.userNameField.exists).ok()
+//     .expect(LoginPage.passwordField.exists).ok();
+// });
 
 test("Add one item to cart", async t =>{
-    await ProductsPage.addItemToCart(6);
+    await ProductsPage.addItemToCart(2);
+    //console.log(ProductsPage.getLabelTextForEachInventoryItem())
+    await ProductsPage.navigateToShoppingCartPage();
+    await ShoppingCartPage.isPageLoaded();
 });
