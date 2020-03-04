@@ -13,7 +13,7 @@ fixture("Shopping Page Tests").page("https://www.saucedemo.com/").beforeEach(asy
     await LoginPage.loginUser(STANDAR_USER, PASSWORD);
 });
 
-test("Navigate to the shopping cart", async t =>{
+test("Navigate to the shopping cart", async t => {
     await ProductsPage.navigateToShoppingCartPage();
     await ShoppingCartPage.isPageLoaded();
 });

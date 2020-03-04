@@ -13,28 +13,28 @@ class CheckOutPage {
         this.firstNameErrorText = Selector("h3[data-test*=error]");
     }
 
-    async isPageLoaded(){
+    async isPageLoaded() {
         return await (
-            this.cancelButton.exists && 
-            this.continueButton.exists && 
+            this.cancelButton.exists &&
+            this.continueButton.exists &&
             this.checkOutForm.exists
         )
     };
 
-    async navigateToCheckoutPage(){
+    async navigateToCheckoutPage() {
         await t.expect(ShoppingCart.checkoutButton.exists).ok()
-        .click(ShoppingCart.checkoutButton);
+            .click(ShoppingCart.checkoutButton);
     };
 
-    async clickOnContinueButton(){
+    async clickOnContinueButton() {
         await t.expect(this.continueButton.exists).ok()
-        .click(this.continueButton);
+            .click(this.continueButton);
     };
 
-    async populateMailInformation(name, surName, zipCode){
+    async populateMailInformation(name, surName, zipCode) {
         await t.typeText(this.firtName, name)
-        .typeText(this.lastName, surName)
-        .typeText(this.postalCode, zipCode);
+            .typeText(this.lastName, surName)
+            .typeText(this.postalCode, zipCode);
     };
 }
 

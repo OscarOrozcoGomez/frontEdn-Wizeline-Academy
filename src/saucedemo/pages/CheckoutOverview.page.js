@@ -1,7 +1,7 @@
 import { Selector, t } from "testcafe";
 
 class CheckoutOverviewPage {
-    constructor(){
+    constructor() {
         this.cancelButton = Selector(".cart_cancel_link.btn_secondary");
         this.finishButton = Selector(".btn_action.cart_button");
         this.shippingSummaryDiv = Selector(".summary_info");
@@ -9,10 +9,10 @@ class CheckoutOverviewPage {
         this.checkoutPageItemsList = [];
     }
 
-    async isPageLoaded(){
+    async isPageLoaded() {
         return await (
-            this.cancelButton.exists && 
-            this.finishButton.exists && 
+            this.cancelButton.exists &&
+            this.finishButton.exists &&
             this.shippingSummaryDiv.exists
         )
     };
@@ -25,6 +25,11 @@ class CheckoutOverviewPage {
 
     async getCheckoutOverviewItemsList() {
         return this.checkoutPageItemsList;
+    }
+
+    async finishPurchaseItems() {
+        await t.expect(this.finishButton.exists).ok()
+            .click(this.finishButton);
     }
 }
 
