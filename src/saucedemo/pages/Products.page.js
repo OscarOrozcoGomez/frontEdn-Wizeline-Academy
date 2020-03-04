@@ -7,6 +7,8 @@ class ProductsPage {
         this.navBarLogo = Selector(".app_logo");
         this.hamburgerButton = Selector(".bm-burger-button>button");
         this.logOutLink = Selector("#logout_sidebar_link");
+        this.shoppingCart = Selector("a>svg[data-icon=shopping-cart]");
+        this.invetoryItem = Selector(".inventory_item");
     }
 
     async isPageLoaded(){
@@ -23,6 +25,16 @@ class ProductsPage {
         .click(this.logOutLink)
     }
 
+    async navigateToShoppingCartPage(){
+        await t.expect(this.shoppingCart.exists).ok();
+        await t.click(this.shoppingCart);
+    }
+
+    async addItemToCart(numberOfItems){
+        for (let index = 0; index < numberOfItems; index++) {
+            await t.click(this.invetoryItem.find("button").nth(index)).wait(1000)
+        }
+    }
 }
 
 export default new ProductsPage();
