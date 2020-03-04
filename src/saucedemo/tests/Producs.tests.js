@@ -13,15 +13,8 @@ fixture("Products Tests").page("https://www.saucedemo.com/").beforeEach(async t 
     await LoginPage.loginUser(STANDAR_USER, PASSWORD);
 });
 
-// test("Log out successful", async t =>{
-//     await ProductsPage.logOut();
-//     await t.expect(LoginPage.userNameField.exists).ok()
-//     .expect(LoginPage.passwordField.exists).ok();
-// });
-
-test("Add one item to cart", async t =>{
-    await ProductsPage.addItemToCart(2);
-    //console.log(ProductsPage.getLabelTextForEachInventoryItem())
-    await ProductsPage.navigateToShoppingCartPage();
-    await ShoppingCartPage.isPageLoaded();
+test("Log out successful", async t =>{
+    await ProductsPage.logOut();
+    await t.expect(LoginPage.userNameField.exists).ok()
+    .expect(LoginPage.passwordField.exists).ok();
 });
