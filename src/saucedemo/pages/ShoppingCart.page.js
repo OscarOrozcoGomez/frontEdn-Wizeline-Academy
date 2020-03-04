@@ -1,5 +1,4 @@
 import { Selector, t } from "testcafe";
-import ProductsPage from "../pages/Products.page"
 
 class ShoppingCart {
     constructor() {
@@ -8,23 +7,24 @@ class ShoppingCart {
         this.continueShoppingButton = Selector(".cart_footer>.btn_secondary");
         this.cartItems = Selector(".cart_item");
         this.cartItemsList = [];
+        this.checkOutButton = Selector(".btn_action.checkout_button");
     }
 
-    async isPageLoaded(){
+    async isPageLoaded() {
         return await (
-            this.checkoutButton.exists && 
-            this.yourCartSubHeader.exists && 
+            this.checkoutButton.exists &&
+            this.yourCartSubHeader.exists &&
             this.continueShoppingButton.exists
         );
     }
 
-    async setcartItemsList(){
+    async setcartItemsList() {
         for (let index = 0; index < this.cartItems.length; index++) {
             this.cartItemsList[index] = await this.cartItems.find(".inventory_item_name").nth(index).textContent;
         }
     }
 
-    async getcartItemsList(){
+    async getcartItemsList() {
         return this.cartItemsList;
     }
 
