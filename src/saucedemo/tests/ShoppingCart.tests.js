@@ -35,9 +35,5 @@ test("Add one or more items to the cart", async t => {
     await ProductsPage.navigateToShoppingCartPage();
     await ShoppingCartPage.isPageLoaded();
     await ShoppingCartPage.setcartItemsList();
-    let listProductPageLabels = await ProductsPage.getLabelTextForEachInventoryItem();
-    let listShoppingPageLabels = await ShoppingCartPage.getcartItemsList();
-    listProductPageLabels.forEach(function (productLabel, index) {
-        t.expect(productLabel === listShoppingPageLabels[index])
-    })
+    Helpers.compareTwoLists(await ProductsPage.getLabelTextForEachInventoryItem(), await ShoppingCartPage.getcartItemsList());
 });
