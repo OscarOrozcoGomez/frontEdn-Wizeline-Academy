@@ -26,7 +26,7 @@ class CheckOutPage {
         .click(ShoppingCart.checkoutButton);
     }
 
-    async continueToCompletePurchase(){
+    async clickOnContinueButton(){
         await t.expect(this.continueButton.exists).ok()
         .click(this.continueButton);
     }

@@ -9,7 +9,7 @@ const PERFORMANCE_GLITCH_USER = process.env.SAUCEDEMO_PERFORMANCE_GLITCH_USER;
 const INVALID_USER = process.env.SAUCEDEMO_INVALID_USER;
 const PASSWORD = process.env.SAUCEDEMO_GENERAL_PASSWORD;
 
-fixture("Products Tests").page("https://www.saucedemo.com/").beforeEach(async t => {
+fixture("Shopping Page Tests").page("https://www.saucedemo.com/").beforeEach(async t => {
     await LoginPage.loginUser(STANDAR_USER, PASSWORD);
 });
 
