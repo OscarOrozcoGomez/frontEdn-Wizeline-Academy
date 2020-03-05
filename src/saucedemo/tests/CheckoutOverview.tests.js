@@ -6,6 +6,7 @@ import CheckoutOverviewPage from "../pages/CheckoutOverview.page"
 import Helpers from "../helpers/helpers"
 import FinishPage from "../pages/Finish.page"
 
+//Gathering variable from environment terminal
 const STANDAR_USER = process.env.SAUCEDEMO_STANDAR_USER;
 const PASSWORD = process.env.SAUCEDEMO_GENERAL_PASSWORD;
 const FIRST_NAME = process.env.SAUCEDEMO_NAME;
@@ -14,6 +15,8 @@ const ZIP_CODE = process.env.SAUCEDEMO_ZIP_CODE;
 
 fixture("CheckoutOverview Page Tests").page("https://www.saucedemo.com/").beforeEach(async t => {
     await LoginPage.loginUser(STANDAR_USER, PASSWORD);
+    await LoginPage.clickOnLoginButton();
+    await ProductsPage.isPageLoaded()
     await ProductsPage.addItemToCart(3);
     await ProductsPage.navigateToShoppingCartPage();
     await ShoppingCartPage.isPageLoaded();
