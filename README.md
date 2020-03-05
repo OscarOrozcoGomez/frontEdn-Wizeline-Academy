@@ -13,3 +13,32 @@
 $ source environmentVariables.txt
 ```
 * Y todas las variables de entorno serán exportadas de un sola vez.
+
+## ¿Como corro los casos de prueba?
+    * Los casos de prueba se pueden correr de diferentes maneras, los puedes correr especificamente por documento de prueba como se muestra a continuación.
+
+        Sintaxis:
+        **testcade <nombre_browser> ruta_del_documento**
+
+        Por linea de comandos:
+        ```ssh
+        $ testcafe chrome src/saucedemo/tests/Login.tests.js
+        ```
+
+    * Tambien los puedes correr todos de una sola vez usando un solo browser con el siguiente comando.
+
+        Sintaxis:
+        **npm run test-chrome**
+
+        Por linea de comandos:
+        ```sh
+        $ npm run test-chrome
+        ```
+    * De igual manera puedes correr los script en multiples instancias de buscadores que en este caso serí con Chrome y Firefox como se muestra a continuacion.
+
+        Por linea de comandos:
+        ```sh
+        $ npm run test-firefox-chrome
+        ```
+Nota: Tengamos en consideracion que los reportes se generaras solos y estan siendo ignorados por git entonces solo se quedaran localmente los reportes.
+
