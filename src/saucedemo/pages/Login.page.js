@@ -10,10 +10,25 @@ class LoginPage {
     }
 
     async loginUser(userName, password) {
-        await t.typeText(this.userNameField, userName)
-            .typeText(this.passwordField, password)
-            .click(this.loginButton);
+        await this.populateUserNameField(userName);
+        await this.populatePasswordField(password);
     }
+
+    async populateUserNameField(userName){
+        await t.expect(this.userNameField.exists).ok()
+        .typeText(this.userNameField, userName);
+    }
+
+    async populatePasswordField(password){
+        await t.expect(this.passwordField.exists).ok()
+        .typeText(this.passwordField, password);
+    }
+
+    async clickOnLoginButton(){
+        await t.expect(this.loginButton.exists).ok()
+        .click(this.loginButton);
+    }
+
 }
 
 export default new LoginPage();
