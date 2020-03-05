@@ -1,6 +1,7 @@
 import LoginPage from "../pages/Login.page"
 import ProductsPage from "../pages/Products.page"
 import ShoppingCartPage from "../pages/ShoppingCart.page"
+import Helpers from "../helpers/helpers"
 
 const STANDAR_USER = process.env.SAUCEDEMO_STANDAR_USER;
 const LOCKED_OUT_USER = process.env.SAUCEDEMO_LOCKED_OUT_USER;
