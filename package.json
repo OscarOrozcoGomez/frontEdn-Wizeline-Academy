@@ -6,7 +6,8 @@
   "scripts": {
     "test-chrome": "testcafe chrome src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000",
     "test-firefox": "testcafe firefox src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000",
-    "test-safari": "testcafe safari src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000"
+    "test-safari": "testcafe safari src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000",
+    "test-firefox-chrome": "testcafe -c 2 chrome,firefox src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000"
   },
   "repository": {
     "type": "git",
