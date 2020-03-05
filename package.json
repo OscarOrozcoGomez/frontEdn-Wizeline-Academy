@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-chrome": "testcafe chrome src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000 --reporter html:reports/ChromeTestCaseExecutionSummary.html",
+    "test-firefox": "testcafe firefox src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000 --reporter html:reports/FireFoxTestCaseExecutionSummary.html",
+    "test-safari": "testcafe safari src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000 --reporter html:reports/SafariTestCaseExecutionSummary.html",
+    "test-firefox-chrome": "testcafe -c 2 chrome,firefox src/saucedemo/tests/*.js --selector-timeout 15000 --assertion-timeout 15000 --reporter html:reports/ChromeNFireFoxTestCaseExecutionSummary.html"
   },
   "repository": {
     "type": "git",
@@ -17,6 +20,7 @@
   },
   "homepage": "https://github.com/OscarOrozcoGomez/frontEdn-Wizeline-Academy#readme",
   "dependencies": {
-    "testcafe": "^1.8.2"
+    "testcafe": "^1.8.2",
+    "testcafe-reporter-html": "^1.4.6"
   }
 }

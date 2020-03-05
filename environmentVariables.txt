@@ -1,0 +1,9 @@
+export SAUCEDEMO_STANDAR_USER=standard_user
+export SAUCEDEMO_LOCKED_OUT_USER=locked_out_user
+export SAUCEDEMO_PROBLEM_USER=problem_user
+export SAUCEDEMO_PERFORMANCE_GLITCH_USER=performance_glitch_user
+export SAUCEDEMO_INVALID_USER=invalid_user
+export SAUCEDEMO_GENERAL_PASSWORD=secret_sauce
+export SAUCEDEMO_NAME=TextingPurpose
+export SAUCEDEMO_LAST_NAME=Wizeline
+export SAUCEDEMO_ZIP_CODE=45678
