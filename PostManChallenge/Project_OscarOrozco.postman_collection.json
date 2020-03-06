@@ -1,0 +1,782 @@
+{
+	"info": {
+		"_postman_id": "d86ecd24-c9b4-4a5e-9b53-27092be56ac6",
+		"name": "Project_OscarOrozco",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create_Project_Oscar_Orozco",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f935e16f-6c3a-47f2-b630-5e899ad23797",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var Ajv = require(\"ajv\");",
+							"(ajv = new Ajv({ logger: console })),",
+							"(schema = {",
+							"    \"required\": [",
+							"        \"id\",",
+							"        \"name\"",
+							"    ],",
+							"    \"properties\": {",
+							"        \"id\": {",
+							"            \"$id\": \"#/properties/id\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"name\": {",
+							"            \"$id\": \"#/properties/name\",",
+							"            \"type\": \"string\"",
+							"        }",
+							"    },",
+							"    \"$id\": \"http://example.org/root.json#\",",
+							"    \"type\": \"object\",",
+							"    \"definitions\": {},",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"",
+							"});",
+							"",
+							"pm.test(\"Validar schema/estructura del json\", function() {",
+							"    pm.expect(ajv.validate(jsonData.data.addProject, schema)).to.be.true;",
+							"});",
+							"",
+							"//Guarda el id del nuevo proyecto Creado",
+							"pm.environment.set(\"myProjectID\", jsonData.data.addProject.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer QA2020",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation agregarProyecto($project:ProjectInput!){\n  addProject(project:$project){\n    id\n    name\n  }\n}",
+						"variables": "{\n  \"project\": {\n  \t\"name\": \"Project_OscarOrozco\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "http://35.223.53.122/",
+					"protocol": "http",
+					"host": [
+						"35",
+						"223",
+						"53",
+						"122"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_new_task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7216e3a3-2f18-43e6-b8d6-c2beb89b6b47",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var Ajv = require(\"ajv\");",
+							"(ajv = new Ajv({ logger: console })),",
+							"(schema = {",
+							"    \"required\": [",
+							"        \"data\"",
+							"    ],",
+							"    \"properties\": {",
+							"        \"data\": {",
+							"            \"required\": [",
+							"                \"addTodo\"",
+							"            ],",
+							"            \"properties\": {",
+							"                \"addTodo\": {",
+							"                    \"required\": [",
+							"                        \"id\",",
+							"                        \"todo\",",
+							"                        \"status\",",
+							"                        \"project\"",
+							"                    ],",
+							"                    \"properties\": {",
+							"                        \"id\": {",
+							"                            \"$id\": \"#/properties/data/properties/addTodo/properties/id\",",
+							"                            \"type\": \"string\"",
+							"                        },",
+							"                        \"todo\": {",
+							"                            \"$id\": \"#/properties/data/properties/addTodo/properties/todo\",",
+							"                            \"type\": \"string\"",
+							"                        },",
+							"                        \"status\": {",
+							"                            \"$id\": \"#/properties/data/properties/addTodo/properties/status\",",
+							"                            \"type\": \"string\"",
+							"                        },",
+							"                        \"project\": {",
+							"                            \"required\": [",
+							"                                \"id\",",
+							"                                \"name\"",
+							"                            ],",
+							"                            \"properties\": {",
+							"                                \"id\": {",
+							"                                    \"$id\": \"#/properties/data/properties/addTodo/properties/project/properties/id\",",
+							"                                    \"type\": \"string\"",
+							"                                },",
+							"                                \"name\": {",
+							"                                    \"$id\": \"#/properties/data/properties/addTodo/properties/project/properties/name\",",
+							"                                    \"type\": \"string\"",
+							"                                }",
+							"                            },",
+							"                            \"$id\": \"#/properties/data/properties/addTodo/properties/project\",",
+							"                            \"type\": \"object\"",
+							"                        }",
+							"                    },",
+							"                    \"$id\": \"#/properties/data/properties/addTodo\",",
+							"                    \"type\": \"object\"",
+							"                }",
+							"            },",
+							"            \"$id\": \"#/properties/data\",",
+							"            \"type\": \"object\"",
+							"        }",
+							"    },",
+							"    \"$id\": \"http://example.org/root.json#\",",
+							"    \"type\": \"object\",",
+							"    \"definitions\": {},",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"",
+							"});",
+							"",
+							"pm.test(\"Validar schema/estructura del json\", function() {",
+							"    pm.expect(ajv.validate(jsonData, schema)).to.be.true;",
+							"});",
+							"",
+							"//Guarda el id del nuevo proyecto Creado",
+							"pm.environment.set(\"myToDoId\", jsonData.data.addTodo.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer QA2020",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation agregarTodo($todo:TodoInput!){\n  addTodo(todo:$todo){\n\tid\n    todo\n    status\n    project{\n      id\n      name\n    }\n  }\n}",
+						"variables": "{\n\t\"todo\": {\n    \t\"todo\": \"This is a Todo Created by Oscar\",\n    \t\"projectId\": \"{{myProjectID}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "http://35.223.53.122/",
+					"protocol": "http",
+					"host": [
+						"35",
+						"223",
+						"53",
+						"122"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update_todo_name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2376cfd1-a3c9-45dd-8654-545ca8ed55d8",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var Ajv = require(\"ajv\");",
+							"(ajv = new Ajv({ logger: console })),",
+							"(schema ={",
+							"    \"required\": [",
+							"        \"data\"",
+							"    ],",
+							"    \"properties\": {",
+							"        \"data\": {",
+							"            \"required\": [",
+							"                \"updateTodo\"",
+							"            ],",
+							"            \"properties\": {",
+							"                \"updateTodo\": {",
+							"                    \"required\": [",
+							"                        \"id\",",
+							"                        \"todo\",",
+							"                        \"status\",",
+							"                        \"project\"",
+							"                    ],",
+							"                    \"properties\": {",
+							"                        \"id\": {",
+							"                            \"$id\": \"#/properties/data/properties/updateTodo/properties/id\",",
+							"                            \"type\": \"string\"",
+							"                        },",
+							"                        \"todo\": {",
+							"                            \"$id\": \"#/properties/data/properties/updateTodo/properties/todo\",",
+							"                            \"type\": \"string\"",
+							"                        },",
+							"                        \"status\": {",
+							"                            \"$id\": \"#/properties/data/properties/updateTodo/properties/status\",",
+							"                            \"type\": \"string\"",
+							"                        },",
+							"                        \"project\": {",
+							"                            \"required\": [",
+							"                                \"id\",",
+							"                                \"name\"",
+							"                            ],",
+							"                            \"properties\": {",
+							"                                \"id\": {",
+							"                                    \"$id\": \"#/properties/data/properties/updateTodo/properties/project/properties/id\",",
+							"                                    \"type\": \"string\"",
+							"                                },",
+							"                                \"name\": {",
+							"                                    \"$id\": \"#/properties/data/properties/updateTodo/properties/project/properties/name\",",
+							"                                    \"type\": \"string\"",
+							"                                }",
+							"                            },",
+							"                            \"$id\": \"#/properties/data/properties/updateTodo/properties/project\",",
+							"                            \"type\": \"object\"",
+							"                        }",
+							"                    },",
+							"                    \"$id\": \"#/properties/data/properties/updateTodo\",",
+							"                    \"type\": \"object\"",
+							"                }",
+							"            },",
+							"            \"$id\": \"#/properties/data\",",
+							"            \"type\": \"object\"",
+							"        }",
+							"    },",
+							"    \"$id\": \"http://example.org/root.json#\",",
+							"    \"type\": \"object\",",
+							"    \"definitions\": {},",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"",
+							"});",
+							"",
+							"pm.test(\"Validar schema/estructura del json\", function() {",
+							"    pm.expect(ajv.validate(jsonData, schema)).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Validar que el nombre de la respuesta del TODO coincida con lo que se mando\", function(){",
+							"    pm.expect(jsonData.data.updateTodo.todo).to.eql(pm.variables.get(\"todoIDValue\"));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1bdb1280-837c-443d-b9a6-4a4d2499ce9c",
+						"exec": [
+							"//Interceptando el body Request",
+							"var reqBody = pm.request.body.graphql.variables;",
+							"",
+							"//Convirtiendo el request a Json",
+							"var todoID = JSON.parse(reqBody)",
+							"",
+							"",
+							"//Almacenando el valoe en una variable",
+							"pm.environment.set(\"todoIDValue\", todoID.todo);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer QA2020",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation actualizarTodo($todoId: ID!, $todo:String, $status:Status){\n  updateTodo(todoId:$todoId, todo:$todo, status:$status){\n    id\n    todo\n    status\n    project{\n      id\n      name\n    }\n  }\n}",
+						"variables": "{\n  \"todoId\": \"{{myToDoId}}\",\n  \"todo\": \"This is a Todo Created by Oscar Changed again\",\n  \"status\": \"PENDING\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://35.223.53.122/",
+					"protocol": "http",
+					"host": [
+						"35",
+						"223",
+						"53",
+						"122"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_a_comment",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "588236cc-66dc-470a-9666-6890437daf85",
+						"exec": [
+							"//Interceptando el body Request",
+							"var reqBody = pm.request.body.graphql.variables;",
+							"",
+							"//Convirtiendo el request a Json",
+							"var firstCommentVariable = JSON.parse(reqBody)",
+							"",
+							"//Almacenando el valoe en una variable",
+							"pm.environment.set(\"firstCommentVariable\", firstCommentVariable.comment.text);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef737476-5a8b-4e98-b20b-947256a9f25e",
+						"exec": [
+							"var jsonResponse = pm.response.json()",
+							"",
+							"var firstCommentVariable = pm.environment.get(\"firstCommentVariable\");",
+							"",
+							"pm.test(\"Validar que mi comentario mandado fue introducido correctamente.\", function () {",
+							"    pm.expect(jsonResponse.data.addComment.text).to.eql(firstCommentVariable)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer QA2020",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation agregarComentario($comment:CommentInput!){\n  addComment(comment:$comment){\n    id\n    text\n    todo{\n      id\n      todo\n      status\n      project{\n        id\n        name\n      }\n    }\n  }\n}\n",
+						"variables": "{\n\t\"comment\": {\n    \"text\": \"Este es el primer comentario de OOG\",\n    \"todoId\": \"{{myToDoId}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "http://35.223.53.122/",
+					"protocol": "http",
+					"host": [
+						"35",
+						"223",
+						"53",
+						"122"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_a_second_comment",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "588236cc-66dc-470a-9666-6890437daf85",
+						"exec": [
+							"//Interceptando el body Request",
+							"var reqBody = pm.request.body.graphql.variables;",
+							"",
+							"//Convirtiendo el request a Json",
+							"var secondCommentVariable = JSON.parse(reqBody)",
+							"",
+							"//Almacenando el valoe en una variable",
+							"pm.environment.set(\"secondCommentVariable\", secondCommentVariable.comment.text);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef737476-5a8b-4e98-b20b-947256a9f25e",
+						"exec": [
+							"var jsonResponse = pm.response.json()",
+							"",
+							"var secondCommentVariable = pm.environment.get(\"secondCommentVariable\");",
+							"",
+							"pm.test(\"Validar que mi comentario mandado fue introducido correctamente.\", function () {",
+							"    pm.expect(jsonResponse.data.addComment.text).to.eql(secondCommentVariable)",
+							"});",
+							"",
+							"pm.environment.set(\"secondCommentID\", jsonResponse.data.addComment.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer QA2020"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation agregarComentario($comment:CommentInput!){\n  addComment(comment:$comment){\n    id\n    text\n    todo{\n      id\n      todo\n      status\n      project{\n        id\n        name\n      }\n    }\n  }\n}",
+						"variables": "{\n\t\"comment\": {\n    \"text\": \"Este es el segundo comentario de OOG\",\n    \"todoId\": \"{{myToDoId}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "http://35.223.53.122/",
+					"protocol": "http",
+					"host": [
+						"35",
+						"223",
+						"53",
+						"122"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_second_comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73146cca-7db9-4a4d-941f-65189c872520",
+						"exec": [
+							"var json = pm.response.json();",
+							"",
+							"pm.test(\"Validate that the comment was deleted\", function () {",
+							"    pm.expect(json.data.deleteComment).to.eql(true);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer QA2020",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation borrarSegundoComentario($commentId:ID!){\n\tdeleteComment(commentId:$commentId)\n}\n",
+						"variables": "{\n  \"commentId\": \"{{secondCommentID}}\"  \n}"
+					}
+				},
+				"url": {
+					"raw": "http://35.223.53.122/",
+					"protocol": "http",
+					"host": [
+						"35",
+						"223",
+						"53",
+						"122"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update_todo_name_to_Complete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2376cfd1-a3c9-45dd-8654-545ca8ed55d8",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var Ajv = require(\"ajv\");",
+							"(ajv = new Ajv({ logger: console })),",
+							"(schema ={",
+							"    \"required\": [",
+							"        \"data\"",
+							"    ],",
+							"    \"properties\": {",
+							"        \"data\": {",
+							"            \"required\": [",
+							"                \"updateTodo\"",
+							"            ],",
+							"            \"properties\": {",
+							"                \"updateTodo\": {",
+							"                    \"required\": [",
+							"                        \"id\",",
+							"                        \"todo\",",
+							"                        \"status\",",
+							"                        \"project\"",
+							"                    ],",
+							"                    \"properties\": {",
+							"                        \"id\": {",
+							"                            \"$id\": \"#/properties/data/properties/updateTodo/properties/id\",",
+							"                            \"type\": \"string\"",
+							"                        },",
+							"                        \"todo\": {",
+							"                            \"$id\": \"#/properties/data/properties/updateTodo/properties/todo\",",
+							"                            \"type\": \"string\"",
+							"                        },",
+							"                        \"status\": {",
+							"                            \"$id\": \"#/properties/data/properties/updateTodo/properties/status\",",
+							"                            \"type\": \"string\"",
+							"                        },",
+							"                        \"project\": {",
+							"                            \"required\": [",
+							"                                \"id\",",
+							"                                \"name\"",
+							"                            ],",
+							"                            \"properties\": {",
+							"                                \"id\": {",
+							"                                    \"$id\": \"#/properties/data/properties/updateTodo/properties/project/properties/id\",",
+							"                                    \"type\": \"string\"",
+							"                                },",
+							"                                \"name\": {",
+							"                                    \"$id\": \"#/properties/data/properties/updateTodo/properties/project/properties/name\",",
+							"                                    \"type\": \"string\"",
+							"                                }",
+							"                            },",
+							"                            \"$id\": \"#/properties/data/properties/updateTodo/properties/project\",",
+							"                            \"type\": \"object\"",
+							"                        }",
+							"                    },",
+							"                    \"$id\": \"#/properties/data/properties/updateTodo\",",
+							"                    \"type\": \"object\"",
+							"                }",
+							"            },",
+							"            \"$id\": \"#/properties/data\",",
+							"            \"type\": \"object\"",
+							"        }",
+							"    },",
+							"    \"$id\": \"http://example.org/root.json#\",",
+							"    \"type\": \"object\",",
+							"    \"definitions\": {},",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"",
+							"});",
+							"",
+							"pm.test(\"Validar schema/estructura del json\", function() {",
+							"    pm.expect(ajv.validate(jsonData, schema)).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Validar que el nombre de la respuesta del TODO coincida con lo que se mando\", function(){",
+							"    pm.expect(jsonData.data.updateTodo.todo).to.eql(pm.variables.get(\"todoIDValue\"));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1bdb1280-837c-443d-b9a6-4a4d2499ce9c",
+						"exec": [
+							"//Interceptando el body Request",
+							"var reqBody = pm.request.body.graphql.variables;",
+							"",
+							"//Convirtiendo el request a Json",
+							"var todoID = JSON.parse(reqBody)",
+							"",
+							"",
+							"//Almacenando el valoe en una variable",
+							"pm.environment.set(\"todoIDValue\", todoID.todo);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer QA2020",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation actualizarTodo($todoId: ID!, $todo:String, $status:Status){\n  updateTodo(todoId:$todoId, todo:$todo, status:$status){\n    id\n    todo\n    status\n    project{\n      id\n      name\n    }\n  }\n}",
+						"variables": "{\n  \"todoId\": \"{{myToDoId}}\",\n  \"todo\": \"This is a Todo Created by Oscar Changed again\",\n  \"status\": \"COMPLETED\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://35.223.53.122/",
+					"protocol": "http",
+					"host": [
+						"35",
+						"223",
+						"53",
+						"122"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List_all_completed_task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf3cd68d-6fc5-4e80-bcb3-1db86e94e291",
+						"exec": [
+							"var json = pm.response.json();",
+							"",
+							"json.data.listTodos.forEach(function(item){",
+							"    if(item.id == pm.variables.get(\"myToDoId\")){",
+							"        console.log(\"El task anterior está enlistado en la respuesta\");",
+							"    }",
+							"    else{",
+							"        console.log(\"El task anterior no está enlistado en la respuesta\");",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer QA2020",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query enlistarTareasCompletedas($projectId:ID, $showCompleted:Boolean){\n  listTodos(projectId:$projectId, showCompleted:$showCompleted){\n    id\n    status\n    project{\n      id\n      name\n    }\n  }\n}",
+						"variables": "{\n  \"projectId\": \"{{myProjectID}}\",\n  \"showCompleted\": true\n}"
+					}
+				},
+				"url": {
+					"raw": "http://35.223.53.122/",
+					"protocol": "http",
+					"host": [
+						"35",
+						"223",
+						"53",
+						"122"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List_all_not_completed_task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf3cd68d-6fc5-4e80-bcb3-1db86e94e291",
+						"exec": [
+							"var json = pm.response.json();",
+							"",
+							"json.data.listTodos.forEach(function(item){",
+							"    if(item.id == pm.variables.get(\"myToDoId\")){",
+							"        console.log(\"El task anterior está enlistado en la respuesta\");",
+							"    }",
+							"    else{",
+							"        console.log(\"El task anterior no está enlistado en la respuesta\");",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer QA2020"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query enlistarTareasCompletedas($projectId:ID, $showCompleted:Boolean){\n  listTodos(projectId:$projectId, showCompleted:$showCompleted){\n    id\n    status\n    project{\n      id\n      name\n    }\n  }\n}",
+						"variables": "{\n  \"projectId\": \"{{myProjectID}}\",\n  \"showCompleted\": false\n}"
+					}
+				},
+				"url": {
+					"raw": "http://35.223.53.122/",
+					"protocol": "http",
+					"host": [
+						"35",
+						"223",
+						"53",
+						"122"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
