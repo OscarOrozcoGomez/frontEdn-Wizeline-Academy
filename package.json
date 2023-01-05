@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/OscarOrozcoGomez/frontEdn-Wizeline-Academy#readme",
   "dependencies": {
-    "testcafe": "^1.8.2",
+    "testcafe": "^1.20.1",
     "testcafe-reporter-html": "^1.4.6"
   }
 }
